@@ -1,0 +1,244 @@
+/* Dashboard.css
+   Drop this file into src/Styles/Dashboard.css (or replace your current file)
+   and ensure your component imports it (you already had: import "../Styles/Dashboard.css")
+*/
+
+/* ---------- Theme tokens ---------- */
+:root{
+  --page-bg: #f7f6ff;
+  --card-bg: #ffffff;
+  --muted: #6b7280;
+  --soft-shadow: 0 8px 28px rgba(16,24,40,0.06);
+  --small-shadow: 0 6px 18px rgba(16,24,40,0.04);
+  --accent-gradient: linear-gradient(90deg,#6d4aff,#8a59ff);
+  --sidebar-bg: #141320;
+  --radius-xl: 18px;
+  --radius-lg: 12px;
+  --max-width: 1300px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* ---------- Page layout ---------- */
+html,body,#root { height:100%; margin:0; background:var(--page-bg); color:#0f1724; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+.dashboard-root { min-height:100vh; display:flex; gap:0; }
+
+/* ---------- Sidebar ---------- */
+.dashboard-sidebar {
+  width: 240px;
+  background: var(--sidebar-bg);
+  color: #fff;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  box-shadow: 0 6px 30px rgba(2,6,23,0.35);
+}
+
+/* sidebar header */
+.dashboard-sidebar .sidebar-top {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:18px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.dashboard-sidebar .sidebar-top .logo {
+  width:36px; height:36px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(90deg,#6d4aff,#8a59ff);
+  font-weight:700; color:white;
+}
+
+/* nav items */
+.dashboard-sidebar nav { padding:12px; display:flex; flex-direction:column; gap:6px; flex:1; }
+.dashboard-sidebar .nav-btn {
+  display:flex; align-items:center; gap:12px; padding:10px 12px; border-radius:10px;
+  color: #d6d6db; background:transparent; border:none; cursor:pointer; text-align:left;
+}
+.dashboard-sidebar .nav-btn svg { opacity:0.9; }
+.dashboard-sidebar .nav-btn:hover { background: rgba(255,255,255,0.03); color:white; }
+.dashboard-sidebar .nav-btn.active { background: rgba(255,255,255,0.06); color:white; font-weight:600; }
+
+/* logout footer */
+.dashboard-sidebar .sidebar-bottom {
+  padding:14px; border-top:1px solid rgba(255,255,255,0.03);
+}
+.dashboard-sidebar .logout-btn {
+  display:flex; align-items:center; gap:10px; padding:10px; width:100%; border-radius:10px; background:transparent; color:#d6d6db; border:none; cursor:pointer;
+}
+.dashboard-sidebar .logout-btn:hover { background: rgba(255,255,255,0.03); color:white; }
+
+/* ---------- Main area ---------- */
+.dashboard-main { flex:1; display:flex; flex-direction:column; min-height:100vh; }
+
+/* topbar */
+.dashboard-main .topbar {
+  display:flex; align-items:center; gap:12px; padding:14px 22px; background: #fff; border-bottom:1px solid rgba(15,23,42,0.04);
+  position: sticky; top: 0; z-index: 30;
+}
+.topbar .top-left { flex:1; }
+.search-field {
+  position:relative;
+  max-width:760px;
+  width:100%;
+}
+.search-field input {
+  width:100%;
+  padding:10px 14px 10px 40px;
+  border-radius:999px;
+  border:1px solid rgba(15,23,42,0.06);
+  font-size:14px;
+  outline:none;
+  box-shadow:none;
+  background:#fff;
+}
+.search-field .search-icon {
+  position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted);
+  pointer-events:none;
+}
+
+/* top actions */
+.topbar .top-actions {
+  display:flex; gap:10px; align-items:center;
+}
+.topbar .icon-btn {
+  width:40px; height:40px; border-radius:999px; background:#f3f4f6; display:flex; align-items:center; justify-content:center; border:none; cursor:pointer;
+  position:relative;
+}
+.topbar .icon-badge { position:absolute; top:6px; right:6px; width:8px; height:8px; border-radius:999px; background:#ef4444; box-shadow:0 0 0 3px rgba(239,68,68,0.12); }
+
+/* avatar */
+.topbar .avatar {
+  width:40px; height:40px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(90deg,#6d4aff,#8a59ff); color:white; font-weight:700;
+}
+
+/* ---------- Content area ---------- */
+.dashboard-main .content {
+  padding:22px;
+  max-width: var(--max-width);
+  margin:0 auto;
+  width:100%;
+}
+
+/* greeting + stats row */
+  .greeting-row { display:flex; flex-direction:column; gap:8px; }
+.greeting-row h1 { font-size:20px; margin:0; font-weight:700; color:#0f1724; }
+.greeting-row p { margin:0; color:var(--muted); font-size:13px; }
+
+.stats-grid {
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:14px;
+  margin-top:12px;
+}
+@media (max-width:1000px){ .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width:640px){ .stats-grid { grid-template-columns: 1fr; } }
+
+.stat-card {
+  background: var(--card-bg);
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,0.04);
+  box-shadow: var(--small-shadow);
+  display:flex; flex-direction:column; gap:8px;
+}
+.stat-card .label { font-size:12px; color:var(--muted); }
+.stat-card .value { font-size:18px; font-weight:800; color:#0b1220; }
+.stat-card .delta { font-size:12px; color:#10b981; }
+
+/* ---------- Upload + categories layout ---------- */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* changed: make two equal columns (50/50) */
+  gap: 18px;
+  margin-top: 18px;
+}
+@media (max-width: 980px) {
+  .main-grid {
+    grid-template-columns: 1fr; /* keep single column on small screens */
+  }
+}
+
+/* ensure upload area uses full column width instead of a fixed width */
+.upload-area {
+  background: var(--card-bg);
+  border-radius: 18px;
+  border: 1px dashed rgba(15,23,42,0.04);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  width: 100%;         /* changed: fill column */
+  max-width: none;     /* changed: remove fixed width */
+  box-shadow: var(--small-shadow);
+  text-align: center;
+}
+
+/* ensure aside cards also fill their column */
+.categories-card,
+.activity-card,
+.distribution-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* categories card */
+.categories-card {
+  background: var(--card-bg);
+  border-radius:18px;
+  padding:16px;
+    min-height: 220px;
+  box-shadow: var(--small-shadow);
+  border:1px solid rgba(15,23,42,0.03);
+}
+.categories-card h3 { margin:0 0 10px 0; font-size:14px; font-weight:700; }
+.categories-grid { display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+.category-tile {
+  padding:12px; border-radius:12px; display:flex; flex-direction:column; justify-content:space-between;
+  min-height:64px; cursor:pointer;
+}
+.category-tile .title { font-weight:700; color:#111827; font-size:13px; }
+.category-tile .meta { font-size:12px; color:var(--muted); }
+
+/* ---------- Distribution widget ---------- */
+.distribution-card {
+  background: var(--card-bg);
+  border-radius:18px;
+  padding:18px;
+  margin-top:18px;
+  box-shadow: var(--small-shadow);
+  border:1px solid rgba(15,23,42,0.03);
+}
+.distribution-row { margin-bottom:12px; }
+.progress-track { height:10px; background:#f3f4f6; border-radius:999px; overflow:hidden; }
+.progress-bar { height:100%; border-radius:999px; }
+
+/* colored progress helpers (example colors) */
+.progress-med { background:#f87171; }
+.progress-fin { background:#34d399; }
+.progress-study { background:#7c3aed; }
+
+/* ---------- Recent activity ---------- */
+.activity-card {
+  background: var(--card-bg);
+  border-radius:12px;
+  padding:14px;
+  margin-top:18px;
+  border:1px solid rgba(15,23,42,0.03);
+  box-shadow: var(--small-shadow);
+}
+.activity-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+.activity-list li { padding:10px; border-radius:8px; background: linear-gradient(180deg, rgba(0,0,0,0.01), rgba(255,255,255,0.01)); display:flex; justify-content:space-between; align-items:center; }
+
+/* ---------- Utility / tiny helpers ---------- */
+.text-muted { color:var(--muted); font-size:13px; }
+.small { font-size:12px; }
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width:1000px) {
+  .dashboard-sidebar { width:72px; }
+  .dashboard-sidebar .nav-btn span { display:none; }
+  .dashboard-sidebar .sidebar-top .brand-text { display:none; }
+}

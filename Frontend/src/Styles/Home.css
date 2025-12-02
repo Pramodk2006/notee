@@ -1,0 +1,125 @@
+:root{
+  --page-bg: #f7f6ff;
+  --muted: #6b7280;
+  --accent-start: #6d4aff;
+  --accent-end: #915dff;
+  --card-bg: #ffffff;
+  --soft-shadow: 0 8px 28px rgba(16,24,40,0.06);
+  --small-shadow: 0 6px 18px rgba(16,24,40,0.04);
+  --radius-lg: 18px;
+}
+
+/* Reset-ish (Tailwind already handles most) */
+.home-root { background: var(--page-bg); color: #0f1724; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+
+/* Topbar */
+.topbar { box-shadow: 0 1px 0 rgba(16,24,40,0.04); }
+.logo-bubble {
+  width:44px; height:44px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  color:white; font-weight:700;
+  box-shadow: var(--small-shadow);
+}
+.logo-text{ font-size:14px; }
+.brand-name { font-weight:600; font-size:15px; }
+.brand-sub { font-size:12px; color:var(--muted); margin-top:2px; }
+
+/* CTA in topbar */
+.cta-btn {
+  background: linear-gradient(90deg,var(--accent-start),var(--accent-end));
+  color:white; padding:10px 14px; border-radius:999px; font-weight:600; border:none; text-decoration:none;
+  display:inline-flex; align-items:center; gap:8px;
+  box-shadow: 0 10px 30px rgba(109,74,255,0.12);
+}
+.cta-btn:hover { transform: translateY(-2px); }
+
+/* Hero */
+.hero-area { margin-top:8px; }
+.hero-title {
+  font-size:2.4rem; font-weight:800; line-height:1.02; color:#0b1220;
+  max-width:900px; margin:0 auto;
+}
+@media (min-width:768px){
+  .hero-title { font-size:3.6rem; }
+}
+.accent { background: linear-gradient(90deg,var(--accent-start),var(--accent-end)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+.hero-sub { color:var(--muted); margin-top:12px; font-size:16px; max-width:700px; margin-left:auto; margin-right:auto; }
+
+/* Hero CTA buttons */
+.hero-cta-row { margin-top:18px; }
+.primary-btn {
+  padding:12px 20px; border-radius:999px; background:linear-gradient(90deg,var(--accent-start),var(--accent-end));
+  color:white; font-weight:700; border:none; box-shadow: 0 8px 28px rgba(109,74,255,0.14);
+}
+.primary-btn:hover{ transform: translateY(-3px); }
+.secondary-btn {
+  padding:11px 18px; border-radius:999px; background:white; color:#0f1724; border:1px solid rgba(15,23,42,0.06);
+}
+
+/* Features grid */
+.features-grid {
+  display:grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap:18px;
+  max-width:1100px;
+  margin:0 auto;
+}
+@media (min-width:768px){
+  .features-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.feature-card {
+  background: var(--card-bg);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: var(--small-shadow);
+  border: 1px solid rgba(15,23,42,0.03);
+  transition: transform .18s ease, box-shadow .18s ease;
+  display:flex;
+  flex-direction:column;
+  min-height:120px;
+}
+.feature-card:hover{
+  transform: translateY(-8px);
+  box-shadow: var(--soft-shadow);
+}
+
+/* feature header layout */
+.feature-head { display:flex; align-items:center; gap:12px; margin-bottom:8px; }
+.feature-bubble {
+  width:46px; height:46px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(180deg, rgba(109,74,255,0.12), rgba(145,93,255,0.08));
+  border: 1px solid rgba(109,74,255,0.06);
+  flex:0 0 46px;
+}
+.feature-icon { color: var(--accent-start); width:20px; height:20px; }
+.feature-title { font-size:16px; font-weight:700; color:#0f1724; margin:0; }
+.feature-desc { color:var(--muted); font-size:14px; margin-top:6px; line-height:1.5; }
+
+/* CTA strip */
+.cta-strip {
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  padding:34px 28px;
+  color:white;
+  border-radius: 26px;
+  text-align:center;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(109,74,255,0.18);
+}
+.cta-title { font-size:20px; font-weight:800; margin:0; }
+.cta-sub { color: rgba(255,255,255,0.9); margin-top:8px; margin-bottom:14px; }
+.cta-action { display:inline-block; background:white; color:var(--accent-start); padding:10px 14px; border-radius:999px; font-weight:700; text-decoration:none; border: none; }
+
+/* subtle utilities */
+.muted { color: var(--muted); }
+.text-center { text-align:center; }
+
+/* small responsive tweaks */
+@media (max-width:640px){
+  .hero-title { font-size:1.6rem; }
+  .features-grid { gap:14px; padding: 0 8px; }
+  .cta-strip { padding:24px 16px; border-radius:18px; }
+}
